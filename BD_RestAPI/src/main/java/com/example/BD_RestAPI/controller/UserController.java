@@ -20,9 +20,16 @@ public class UserController {
     public UserEntity obterPorId(@PathVariable String id) {
         return userService.obterPorId(id);
     }
-
+    @GetMapping("/obterNome/{nome}")
+    public  List <UserEntity> obterNome(@PathVariable String nome){return userService.obterNome(nome); }
+    @GetMapping("/obterEmail/{email}")
+    public List<UserEntity> obterEmail(@PathVariable String email){return userService.obterEmail(email);}
     @PostMapping
-    public UserEntity inserir(@RequestBody UserEntity user) { return userService.inserir(user); }
+    public void inserirLista(@RequestBody List<UserEntity> users){ userService.inserirLista(users);}
+
+
+    //@PostMapping
+    //public UserEntity inserir(@RequestBody UserEntity user) { return userService.inserir(user); }
 
     @PutMapping("/{id}")
     public UserEntity atualizar(@PathVariable String id, @RequestBody UserEntity user) {
@@ -32,4 +39,5 @@ public class UserController {
     public void excluir(@PathVariable String id) {
         userService.excluir(id);
     }
+
 }
